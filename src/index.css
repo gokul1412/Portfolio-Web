@@ -1,0 +1,15 @@
+/* Base reset — Design system and theme styles are injected via App.jsx CSS variable */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+button {
+  font-family: inherit;
+}

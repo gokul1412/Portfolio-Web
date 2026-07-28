@@ -1,0 +1,346 @@
+/* ============================================================
+   ProfileCard — React Bits / shadcn block styles
+   Exact visual match for @react-bits/ProfileCard
+   ============================================================ */
+
+.profilecard-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4 / 5;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  display: block;
+  user-select: none;
+}
+
+/* ---- Behind glow (follows cursor, blurred, big) ---- */
+.profilecard-behind {
+  position: absolute;
+  inset: -22% -14% -26% -14%;
+  background: radial-gradient(
+    circle var(--gs) at var(--gx) var(--gy),
+    var(--gc) 0%,
+    rgba(129, 140, 248, 0.18) 35%,
+    rgba(0, 0, 0, 0) 72%
+  );
+  filter: blur(24px);
+  z-index: 0;
+  transition: background 0.18s ease-out;
+  pointer-events: none;
+}
+
+/* ---- Card surface ---- */
+.profilecard-surface {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 32px;
+  overflow: hidden;
+  z-index: 1;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+  box-shadow:
+    0 30px 80px -18px rgba(15, 23, 42, 0.85),
+    0 10px 30px -12px rgba(99, 102, 241, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(148, 163, 255, 0.14);
+}
+
+/* ---- Universal layer (stacked overlays) ---- */
+.profilecard-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.profilecard-icons {
+  background-repeat: repeat;
+  transform: translateZ(30px);
+}
+
+.profilecard-grain {
+  background-repeat: repeat;
+  opacity: 0.9;
+}
+
+.profilecard-vignette {
+  transform: translateZ(10px);
+}
+
+.profilecard-highlight {
+  mix-blend-mode: screen;
+  opacity: 0.95;
+}
+
+/* ---- Info header (top of card) ---- */
+.profilecard-info {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 5;
+  transform: translateZ(55px);
+}
+
+.profilecard-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.9rem, 4.8vw, 2.7rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  background: linear-gradient(180deg, #f8fafc 0%, #cbd5e1 60%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 30px rgba(99, 102, 241, 0.2);
+}
+
+.profilecard-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(203, 213, 225, 0.78);
+  letter-spacing: 0.04em;
+  margin-top: 8px;
+}
+
+/* ---- Main avatar (bottom center, bust cut-out) ---- */
+.profilecard-avatar-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 68%;
+  z-index: 4;
+  transform: translateZ(24px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.profilecard-avatar {
+  width: 88%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 26px 26px 32px 32px;
+  /* bottom-framed mask (like React Bits bust cutout) */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 18%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 18%,
+    #000 100%
+  );
+  filter:
+    saturate(1.05) contrast(1.04) brightness(0.98)
+    drop-shadow(0 16px 30px rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+}
+
+.profilecard-avatar-halo {
+  position: absolute;
+  bottom: -5%;
+  left: 8%;
+  right: 8%;
+  height: 45%;
+  border-radius: 50%;
+  z-index: -1;
+  filter: blur(18px);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* ---- Footer CTA bar ---- */
+.profilecard-footer {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 22px;
+  z-index: 6;
+  transform: translateZ(60px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px 12px 12px;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  border: 1px solid rgba(148, 163, 255, 0.16);
+  border-radius: 18px;
+  box-shadow:
+    0 10px 30px rgba(2, 6, 23, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.profilecard-user-mini {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.profilecard-mini-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.profilecard-mini {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid rgba(148, 163, 255, 0.22);
+  background: rgba(30, 41, 59, 0.8);
+  pointer-events: none;
+}
+
+.profilecard-dot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.9);
+}
+
+.profilecard-user-text {
+  min-width: 0;
+  text-align: left;
+}
+
+.profilecard-handle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profilecard-status {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  color: rgba(148, 163, 184, 0.85);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.profilecard-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+.profilecard-contact {
+  flex-shrink: 0;
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #0b1026;
+  background: linear-gradient(135deg, #a5b4fc 0%, #7dd3fc 100%);
+  box-shadow:
+    0 6px 18px rgba(129, 140, 248, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+
+.profilecard-contact:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow:
+    0 10px 24px rgba(129, 140, 248, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+.profilecard-contact:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+/* ---- Light mode theme adaptations ---- */
+[data-theme='light'] .profilecard-surface {
+  border-color: rgba(79, 70, 229, 0.12);
+  box-shadow:
+    0 30px 80px -18px rgba(15, 23, 42, 0.25),
+    0 10px 30px -12px rgba(99, 102, 241, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+[data-theme='light'] .profilecard-info .profilecard-name {
+  background: linear-gradient(180deg, #0f172a 0%, #334155 60%, #475569 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme='light'] .profilecard-title {
+  color: rgba(51, 65, 85, 0.75);
+}
+
+[data-theme='light'] .profilecard-footer {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(79, 70, 229, 0.1);
+}
+
+[data-theme='light'] .profilecard-handle {
+  color: #0f172a;
+}
+
+[data-theme='light'] .profilecard-status {
+  color: rgba(71, 85, 105, 0.8);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 960px) {
+  .profilecard-wrap {
+    max-width: 380px;
+  }
+}
+
+@media (max-width: 640px) {
+  .profilecard-wrap {
+    max-width: 340px;
+    aspect-ratio: 4 / 5.2;
+  }
+  .profilecard-info {
+    top: 28px;
+  }
+  .profilecard-footer {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    padding: 10px 12px 10px 10px;
+  }
+  .profilecard-mini {
+    width: 36px;
+    height: 36px;
+  }
+  .profilecard-contact {
+    padding: 9px 14px;
+    font-size: 0.78rem;
+  }
+}
